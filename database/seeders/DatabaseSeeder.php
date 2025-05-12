@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             SubjectsTableSeeder::class,
         ]);
+
     }
 }
