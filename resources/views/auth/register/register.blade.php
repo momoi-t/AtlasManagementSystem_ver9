@@ -2,6 +2,13 @@
   <form action="{{ route('registerPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
       <div class="w-25 vh-75 border p-3">
+      @if ($errors->any())
+            <ul class="error-list text-danger mb-3" style="list-style:none; padding:0; font-size:14px;">
+                @foreach ($errors->all() as $error)
+                    <li>※ {{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
