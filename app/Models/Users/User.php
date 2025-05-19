@@ -80,4 +80,9 @@ class User extends Authenticatable
     public function likePostId(){
         return Like::where('like_user_id', Auth::id());
     }
+
+    //講師かの判定
+    public function isInstructor(){
+        return in_array($this->role,[1,2,3]);
+    }
 }
