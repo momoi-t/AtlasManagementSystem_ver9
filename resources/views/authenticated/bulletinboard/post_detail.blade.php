@@ -3,14 +3,29 @@
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
       <div class="p-3">
+      @if (Auth::id() === $post->user_id)
         <div class="detail_inner_head">
           <div>
+            <!-- バリデーションエラーメッセージ -->
+            @if ($errors->any())
+              <div class="text-danger small">
+                @foreach ($errors->all() as $error)
+                  <div>{{ $error }}</div>
+                @endforeach
+              </div>
+            @endif
           </div>
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <form method="POST" action="{{ route('post.delete', ['id' => $post->id]) }}" onsubmit="return confirm('本当に削除してもよろしいですか？');" style="display: inline;">
+              @csrf
+              <button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">
+              削除
+              </button>
+            </form>
           </div>
         </div>
+      @endif
 
         <div class="contributor d-flex">
           <p>
@@ -51,6 +66,7 @@
     </div>
   </div>
 </div>
+<!--編集モーダル-->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
