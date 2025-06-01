@@ -5,6 +5,14 @@
       <div class="p-3">
       @if (Auth::id() === $post->user_id)
         <div class="detail_inner_head">
+          <!-- 仮でカテゴリ表示 -->
+          @if ($post->subCategories->isNotEmpty())
+            <div class="d-flex align-items-center mb-1">
+              @foreach ($post->subCategories as $subCategory)
+              <span class="badge bg-secondary me-1">{{ $subCategory->sub_category }}</span>
+              @endforeach
+            </div>
+          @endif
           <div>
             <!-- バリデーションエラーメッセージ -->
             @if ($errors->any())

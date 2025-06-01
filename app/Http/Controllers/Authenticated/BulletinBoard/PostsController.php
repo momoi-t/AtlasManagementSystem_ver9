@@ -39,13 +39,14 @@ class PostsController extends Controller
     }
 
     public function postDetail($post_id){
-        $post = Post::with('user', 'postComments')->findOrFail($post_id);
+        $post = Post::with('user', 'postComments', 'subCategories')->findOrFail($post_id);
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 
     public function postInput(){
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories', 'sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
@@ -54,6 +55,12 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
+        //サブカテゴリーID登録
+        if ($request->has('sub_category_id')) {
+            $post->subCategories()->attach($request->sub_category_id);
+        }
+
         return redirect()->route('post.show');
     }
 
@@ -69,10 +76,30 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
+    //メインカテゴリー
     public function mainCategoryCreate(Request $request){
+        $request->validate([
+            'main_category' => 'required|string|max:100|unique:main_categories,main_category',
+        ]);
+
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
+    //サブカテゴリー
+    public function subCategoryCreate(Request $request){
+        $request->validate([
+        'main_category_id' => 'required|exists:main_categories,id',
+        'sub_category' => 'required|string|max:100|unique:sub_categories,sub_category',
+    ]);
+
+    SubCategory::create([
+        'main_category_id' => $request->main_category_id,
+        'sub_category' => $request->sub_category,
+    ]);
+
+    return redirect()->route('post.input');
+    }
+
 
     public function commentCreate(Request $request){
         PostComment::create([
