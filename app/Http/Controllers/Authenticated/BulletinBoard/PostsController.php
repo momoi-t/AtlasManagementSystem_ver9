@@ -21,9 +21,23 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
-            $posts = Post::with('user', 'postComments')
-            ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            // 検索ワードと完全一致するサブカテゴリーを検索
+            $matchedSubCategory = SubCategory::where('sub_category', $request->keyword)->first();
+
+        if ($matchedSubCategory) {
+            // 該当のサブカテゴリーに紐づく投稿のみ表示
+            $posts = Post::whereHas('subCategories', function ($query) use ($matchedSubCategory) {
+                $query->where('sub_category_id', $matchedSubCategory->id);
+            })
+            ->with('user', 'postComments', 'likes', 'subCategories')
+            ->get();
+        } else {
+            // 一致しない場合
+            $posts = collect(); // 何も表示しない
+        }
+            //$posts = Post::with('user', 'postComments')
+            //->where('post_title', 'like', '%'.$request->keyword.'%')
+            //->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
             $sub_category_id = $request->category_word;
             $posts = Post::whereHas('subCategories', function ($query) use ($sub_category_id) {
