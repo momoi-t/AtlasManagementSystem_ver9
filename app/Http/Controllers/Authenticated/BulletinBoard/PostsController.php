@@ -16,7 +16,7 @@ use Auth;
 class PostsController extends Controller
 {
     public function show(Request $request){
-        $posts = Post::with('user', 'postComments', 'likes')->get();
+        $posts = Post::with('user', 'postComments', 'likes', 'subCategories')->get();
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new Post;
@@ -25,8 +25,12 @@ class PostsController extends Controller
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $sub_category_id = $request->category_word;
+            $posts = Post::whereHas('subCategories', function ($query) use ($sub_category_id) {
+                $query->where('sub_category_id', $sub_category_id);
+            })
+            ->with('user', 'postComments','likes', 'subCategories')
+            ->get();
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')

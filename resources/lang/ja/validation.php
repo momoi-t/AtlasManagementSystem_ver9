@@ -124,6 +124,7 @@ return [
         'birth_day' => '生年月日',
         'password_confirmation' => 'パスワード確認',
         'password' => 'パスワード',
+        'sub_category' => 'サブカテゴリー',
         // ここに他のフォーム項目の名前も追加してください
     ],
 
