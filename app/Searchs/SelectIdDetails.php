@@ -8,9 +8,9 @@ class SelectIdDetails implements DisplayUsers{
   // 改修課題：選択科目の検索機能
   public function resultUsers($keyword, $category, $updown, $gender, $role, $subjects){
     if(is_null($keyword)){
-      $keyword = User::get('id')->toArray();
+      $keyword = User::pluck('id')->toArray(); // IDだけの配列に修正
     }else{
-      $keyword = array($keyword);
+      $keyword = [$keyword];
     }
     if(is_null($gender)){
       $gender = ['1', '2', '3'];
@@ -29,7 +29,7 @@ class SelectIdDetails implements DisplayUsers{
       ->whereIn('role', $role);
     })
     ->whereHas('subjects', function($q) use ($subjects){
-      $q->where('subjects.id', $subjects);
+      $q->whereIn('subjects.id', $subjects);
     })
     ->orderBy('id', $updown)->get();
     return $users;
