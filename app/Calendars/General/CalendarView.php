@@ -41,8 +41,8 @@ class CalendarView{
       $days = $week->getDays();
       foreach($days as $day){
         //過去日か判定
-        $today = Carbon::today()->format('Y-m-d');
-        $isPast = $day->everyDay() < $today;
+        $today = Carbon::today();
+        $isPast = Carbon::parse($day->everyDay())->lt($today);
         // 過去日をpast-dayにする
         $tdClass = 'calendar-td' . ($isPast ? ' past-day' : ' '.$day->getClassName());
         $html[] = '<td class="' . $tdClass . '">';
@@ -71,15 +71,16 @@ class CalendarView{
           }
         }else{
           //予約なし
-          $isCurrentMonth = $this->carbon->format('Y-m') === Carbon::parse($day->everyDay())->format('Y-m');
-          $isTodayOrFuture = Carbon::parse($day->everyDay())->gte(Carbon::today());
+          $dayDate = Carbon::parse($day->everyDay())->startOfDay();
+          $isPast = $dayDate->lt(Carbon::today());
+          $isCurrentMonth = $this->carbon->format('Y-m') === $dayDate->format('Y-m');
 
-          if ($isCurrentMonth && !$isTodayOrFuture) {
-            // 今月かつ過去日 → 受付終了
+          if ($isCurrentMonth && $isPast) {
+            // 過去日：受付終了
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color:gray;">受付終了</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          } elseif ($isCurrentMonth && $isTodayOrFuture) {
-            // 今月かつ今日以降 → プルダウン表示
+          } elseif ($isCurrentMonth && !$isPast) {
+            // 未来日：プルダウン表示
             $html[] = $day->selectPart($day->everyDay());
             }
           }
