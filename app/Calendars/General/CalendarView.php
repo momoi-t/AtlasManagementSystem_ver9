@@ -54,11 +54,11 @@ class CalendarView{
           //予約あり
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
-            $reservePart = "リモ1部";
+            $reservePart = "1部参加";
           }else if($reservePart == 2){
-            $reservePart = "リモ2部";
+            $reservePart = "2部参加";
           }else if($reservePart == 3){
-            $reservePart = "リモ3部";
+            $reservePart = "3部参加";
           }
           if($isPast){
             //過去日の予約は表示のみ
