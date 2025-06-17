@@ -53,20 +53,28 @@ class CalendarView{
         if(in_array($day->everyDay(), $day->authReserveDay())){
           //予約あり
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
-          if($reservePart == 1){
-            $reservePart = "1部参加";
-          }else if($reservePart == 2){
-            $reservePart = "2部参加";
-          }else if($reservePart == 3){
-            $reservePart = "3部参加";
-          }
+          //表示
           if($isPast){
-            //過去日の予約は表示のみ
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color:gray;">'. $reservePart .'</p>';
+            // 過去日用文言で表示
+            if($reservePart == 1){
+              $reserveLabel = "1部参加";
+            }else if($reservePart == 2){
+              $reserveLabel = "2部参加";
+            }else if($reservePart == 3){
+              $reserveLabel = "3部参加";
+            }
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color:gray;">'. $reserveLabel .'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             //未来日の予約は削除ボタン表示
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            if($reservePart == 1){
+              $reserveLabel = "リモ1部";
+            }else if($reservePart == 2){
+              $reserveLabel = "リモ2部";
+            }else if($reservePart == 3){
+              $reserveLabel = "リモ3部";
+            }
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reserveLabel .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
