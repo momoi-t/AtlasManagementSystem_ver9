@@ -125,12 +125,12 @@ class CalendarView{
           <form action="/delete/calendar" method="post">
             <input type="hidden" name="_token" value="' . csrf_token() . '">
             <input type="hidden" name="delete_date" id="deleteDateInput">
-            <div class="modal-body text-center">
+            <div class="modal-body">
               <p class="mb-2" id="modalDateText" style="font-size:16px;"></p>
               <p class="mb-2" id="modalTimeText" style="font-size:16px;"></p>
               <p class="mt-3" style="font-size:16px;">上記の予約をキャンセルしてもよろしいですか？</p>
             </div>
-            <div class="modal-footer justify-content-center">
+            <div class="modal-footer">
               <button type="button" class="btn btn-primary me-2" data-bs-dismiss="modal">閉じる</button>
               <button type="submit" class="btn btn-danger">キャンセル</button>
             </div>
@@ -138,7 +138,7 @@ class CalendarView{
         </div>
       </div>
     </div>
-HTML;
+    HTML;
 
 // JavaScript　モーダル用
 $html[] = <<<SCRIPT
@@ -152,7 +152,7 @@ document.addEventListener('click', function (e) {
     const value = button.getAttribute('data-value');
 
     document.getElementById('modalDateText').textContent = '予約日：' + date;
-    document.getElementById('modalTimeText').textContent = '予約時間：' + time;
+    document.getElementById('modalTimeText').textContent = '時間：' + time;
     document.getElementById('deleteDateInput').value = value;
 
     const modal = new bootstrap.Modal(document.getElementById('cancelModal'));

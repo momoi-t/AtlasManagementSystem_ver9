@@ -101,29 +101,23 @@ li {
   width: 100%;
 }
 
-.modal__content {
+.modal-content {
   background: #fff;
   left: 50%;
-  padding: 40px;
-  position: absolute;
-  top: 50%;
+  padding: 20px;
+  margin: 50% 0;
+  padding: 20px 150px;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 200%;
 }
 
-.modal-dialog {
-  max-width: 700px;
-  /* 2倍くらいの横幅 */
-  margin: auto;
-}
-
-/* モーダル本文を左寄せ */
 .modal-body {
-  text-align: left;
+  width: 100%;
+  padding: 1rem 2rem;
 }
 
-/* ボタンを左右に離す */
 .modal-footer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
@@ -144,6 +138,12 @@ li {
 .modal-footer .btn-danger {
   background-color: #dc3545;
   border-color: #dc3545;
+}
+
+/* モーダル上下の線を消す */
+.modal-header,
+.modal-footer {
+  border: none !important;
 }
 
 /* 掲示板 */
