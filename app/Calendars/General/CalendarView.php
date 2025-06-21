@@ -74,7 +74,18 @@ class CalendarView{
             }else if($reservePart == 3){
               $reserveLabel = "リモ3部";
             }
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reserveLabel .'</button>';
+            $reserveDate = $day->authReserveDate($day->everyDay())->first();
+            $reserveValue = $reserveDate->setting_reserve;
+            $reserveDateStr = $day->everyDay();
+            $reserveTimeStr = $reserveLabel;
+
+            $html[] = '<a href="#" class="btn btn-danger p-0 w-75 open-cancel-modal"'
+              . ' data-date="' . $reserveDateStr . '"'
+              . ' data-time="' . $reserveTimeStr . '"'
+              . ' data-value="' . $reserveValue . '"'
+              . ' style="font-size:12px">'
+              . $reserveTimeStr
+              . '</a>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
@@ -100,10 +111,56 @@ class CalendarView{
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
+
     //予約
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
     //削除
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
+
+    // モーダルHTML
+    $html[] = <<<HTML
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="/delete/calendar" method="post">
+            <input type="hidden" name="_token" value="' . csrf_token() . '">
+            <input type="hidden" name="delete_date" id="deleteDateInput">
+            <div class="modal-body text-center">
+              <p class="mb-2" id="modalDateText" style="font-size:16px;"></p>
+              <p class="mb-2" id="modalTimeText" style="font-size:16px;"></p>
+              <p class="mt-3" style="font-size:16px;">上記の予約をキャンセルしてもよろしいですか？</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-primary me-2" data-bs-dismiss="modal">閉じる</button>
+              <button type="submit" class="btn btn-danger">キャンセル</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+HTML;
+
+// JavaScript　モーダル用
+$html[] = <<<SCRIPT
+<script>
+document.addEventListener('click', function (e) {
+  if (e.target && e.target.classList.contains('open-cancel-modal')) {
+    e.preventDefault();
+    const button = e.target;
+    const date = button.getAttribute('data-date');
+    const time = button.getAttribute('data-time');
+    const value = button.getAttribute('data-value');
+
+    document.getElementById('modalDateText').textContent = '予約日：' + date;
+    document.getElementById('modalTimeText').textContent = '予約時間：' + time;
+    document.getElementById('deleteDateInput').value = value;
+
+    const modal = new bootstrap.Modal(document.getElementById('cancelModal'));
+    modal.show();
+  }
+});
+</script>
+SCRIPT;
 
     return implode('', $html);
   }
