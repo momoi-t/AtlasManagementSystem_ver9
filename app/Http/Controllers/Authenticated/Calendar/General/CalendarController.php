@@ -47,9 +47,9 @@ class CalendarController extends Controller
             // 予約数を１戻す
             $reserveSetting->increment('limit_users');
 
-            return redirect()->back()->with('message', '予約をキャンセルしました。');
+            return redirect()->back();
         }
 
-        return redirect()->back()->with('error', '予約が見つかりませんでした。');
+        return redirect()->back();
     }
 }
