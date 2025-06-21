@@ -117,13 +117,14 @@ class CalendarView{
     //削除
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 
+    $formToken = csrf_token();
     // モーダルHTML
     $html[] = <<<HTML
     <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <form action="/delete/calendar" method="post">
-            <input type="hidden" name="_token" value="' . csrf_token() . '">
+            <input type="hidden" name="_token" value="{$formToken}">
             <input type="hidden" name="delete_date" id="deleteDateInput">
             <div class="modal-body">
               <p class="mb-2" id="modalDateText" style="font-size:16px;"></p>
