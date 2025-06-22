@@ -75,7 +75,7 @@ class CalendarView{
               $reserveLabel = "リモ3部";
             }
             $reserveDate = $day->authReserveDate($day->everyDay())->first();
-            $reserveValue = $reserveDate->setting_reserve;
+            $reserveValue = $reserveDate->id;
             $reserveDateStr = $day->everyDay();
             $reserveTimeStr = $reserveLabel;
 

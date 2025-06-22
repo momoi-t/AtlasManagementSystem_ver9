@@ -40,16 +40,16 @@ class CalendarController extends Controller
         $user = Auth::user();
         $deleteId = $request->input('delete_date');
 
-        $reserveSetting = ReserveSettings::where('setting_reserve', $deleteId)->first();
+        $reserveSetting = ReserveSettings::find($deleteId);
         if ($reserveSetting) {
             // ユーザーとのリレーション解除（中間テーブルから削除）
             $reserveSetting->users()->detach($user->id);
             // 予約数を１戻す
             $reserveSetting->increment('limit_users');
 
-            return redirect()->back();
+            return redirect()->back()->with('message', '予約をキャンセルしました。');
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('error', '予約が見つかりませんでした。');
     }
 }
