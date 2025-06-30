@@ -265,16 +265,23 @@ li {
 .category_btn {
   font-size: 12px;
   border-radius: 5px;
-  padding: 0 5px;
+  padding: 2px 5px;
+  margin: 2px 0;
   border: none;
   background: #999;
   color: #FFF;
+  text-decoration: none;
 }
 
 .main_categories span,
 .sub_categories li input {
   list-style: none;
   cursor: pointer;
+}
+
+ol,
+ul {
+  padding-left: 0;
 }
 
 /* ユーザー検索 */

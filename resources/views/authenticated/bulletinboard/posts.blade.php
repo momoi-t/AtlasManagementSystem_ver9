@@ -48,7 +48,7 @@
             <ul class="sub_category_list ps-3">
             @foreach($category->subCategories as $subCategory)
               <li>
-                <a href="{{ route('post.show', ['category_word' => $subCategory->id]) }}">
+                <a class="category_btn" href="{{ route('post.show', ['category_word' => $subCategory->id]) }}" >
                   {{ $subCategory->sub_category }}
                 </a>
               </li>
