@@ -203,6 +203,10 @@ li {
   font-weight: bold;
 }
 
+.post_created_at {
+  padding-left: 50px;
+}
+
 .detsail_post_title {
   font-size: 14px;
 }
