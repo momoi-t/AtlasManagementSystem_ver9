@@ -190,6 +190,12 @@ li {
   color: red;
 }
 
+/*　掲示板 投稿画面*/
+.post_create_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* 掲示板 詳細画面 */
 .contributor {
   font-size: 12px;
@@ -281,6 +287,10 @@ li {
 .sub_categories li input {
   list-style: none;
   cursor: pointer;
+}
+
+.subcategory_create {
+  padding-top: 48px;
 }
 
 ol,

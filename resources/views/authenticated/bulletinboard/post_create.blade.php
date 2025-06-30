@@ -28,7 +28,7 @@
       <p class="mb-0">投稿内容</p>
       <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
     </div>
-    <div class="mt-3 text-right">
+    <div class="mt-3 post_create_btn">
       <input type="submit" class="btn btn-primary" value="投稿" form="postCreate">
     </div>
     <form action="{{ route('post.create') }}" method="post" id="postCreate">{{ csrf_field() }}</form>
@@ -46,7 +46,7 @@
       </div>
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       <!-- サブカテゴリー追加 -->
-      <div class="">
+      <div class="subcategory_create">
        @if($errors->first('sub_category'))
           <span class="error_message">{{ $errors->first('sub_category') }}</span>
         @endif

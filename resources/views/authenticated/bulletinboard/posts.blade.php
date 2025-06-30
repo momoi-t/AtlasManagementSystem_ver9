@@ -7,7 +7,7 @@
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
-        <!-- 仮でカテゴリ表示 -->
+        <!-- カテゴリ表示 -->
         @if ($post->subCategories->isNotEmpty())
           <div class="d-flex align-items-center mb-1">
             @foreach ($post->subCategories as $subCategory)
