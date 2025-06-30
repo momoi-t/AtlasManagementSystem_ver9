@@ -77,7 +77,7 @@
 <!--編集モーダル-->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
-  <div class="modal__content">
+  <div class="post-edit-modal-content">
     <form action="{{ route('post.edit') }}" method="post">
       <div class="w-100">
         <div class="modal-inner-title w-50 m-auto">
