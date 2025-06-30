@@ -19,7 +19,7 @@ li {
 /* サイドバー */
 .sidebar {
   width: 150px;
-  height: 100vh;
+  height: auto;
   background-color: #03AAD2;
   font-weight: bold;
 }
@@ -242,6 +242,10 @@ li {
 
 .comment_container span {
   font-size: 12px;
+}
+
+.post_count {
+  padding: 0 1rem;
 }
 
 .post_status span {

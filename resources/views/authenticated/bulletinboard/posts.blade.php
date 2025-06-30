@@ -17,10 +17,10 @@
         @endif
 
         <div class="d-flex post_status">
-          <div class="mr-5">
+          <div class="mr-5 post_count">
             <i class="fa fa-comment"></i><span class="">{{ $post->postComments->count() }}</span>
           </div>
-          <div>
+          <div class="post_count">
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
             @else
