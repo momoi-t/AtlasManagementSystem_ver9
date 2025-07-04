@@ -39,7 +39,9 @@ class CalendarView{
       foreach($days as $day){
         $today = Carbon::today();
         $yesterday = $today->copy()->subDay();
-        if ($day->everyDay() <= $yesterday->format("Y-m-d")) {
+        if ($day->everyDay() === '') {
+          $html[] = '<td class="day-blank border">';
+        } elseif ($day->everyDay() <= $yesterday->format("Y-m-d")) {
           $html[] = '<td class="past-day border">';
         } else {
           $html[] = '<td class="border '.$day->getClassName().'">';

@@ -39,33 +39,45 @@ li {
 }
 
 /* スクール予約関連 */
-.day-blank {
-  background: #D3D3D3;
+.admin-page .table>:not(caption)>*>* {
+  background-color: #ECF1F6 !important;
+}
+
+.admin-page td.day-blank {
+  background: #D3D3D3 !important;
+}
+
+td.day-blank {
+  background: #D3D3D3 !important;
 }
 
 .day-sat {
-  color: #0000FF;
+  color: #0000FF !important;
 }
 
 .day-sun {
-  color: #FF0000;
+  color: #FF0000 !important;
 }
 
-.past-day {
-  background: #EEE;
+.admin-page td.past-day {
+  background: #EEE !important;
+}
+
+td.past-day {
+  background: #EEE !important;
 }
 
 .past-day p {
-  color: #999;
+  color: #999 !important;
 }
 
 .calendar-td {
-  min-width: 100px;
+  min-width: 100px !important;
 }
 
 .day_part {
-  color: #494949;
-  font-size: 12px;
+  color: #494949 !important;
+  font-size: 12px !important;
 }
 
 .adjust-table {
@@ -77,11 +89,18 @@ li {
 }
 
 .adjust-area p {
-  justify-content: space-around;
+  justify-content: space-around !important;
 }
 
 .adjust-table-btn {
-  width: 70%;
+  width: 70% !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reserve_btn {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* モーダル */
