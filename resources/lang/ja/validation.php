@@ -121,10 +121,13 @@ return [
     'attributes' => [
         'over_name' => '名字',
         'under_name' => '名前',
+        'mail_address' => 'メールアドレス',
         'birth_day' => '生年月日',
         'password_confirmation' => 'パスワード確認',
         'password' => 'パスワード',
         'sub_category' => 'サブカテゴリー',
+        'over_name_kana' => '名字カナ',
+        'under_name_kana' => '名前カナ'
         // ここに他のフォーム項目の名前も追加してください
     ],
 

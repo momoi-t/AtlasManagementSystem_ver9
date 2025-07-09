@@ -27,8 +27,9 @@ li {
   width: 150px;
 }
 
-/* ログインフォーム */
-.login-wrapper {
+/* フォーム */
+.login-wrapper,
+.register-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,14 +37,51 @@ li {
   height: 100vh;
 }
 
-.login-form {
+.login-form,
+.register_form {
   width: 450px;
   background: #fff;
   border-radius: 10px;
-  /* 角丸 */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  /* 影 */
   padding: 30px;
+}
+
+/* 新規登録 */
+
+select {
+  border: none;
+}
+
+.name-group,
+.sex-group,
+.birthday-box-group,
+.role-box-group,
+.subject-box-group {
+  width: 100%;
+}
+
+.radio-box,
+.birthday-box,
+.role-box,
+.subject-box {
+  flex: 1;
+  max-width: 120px;
+  text-align: center;
+}
+
+.name-box {
+  flex: 1 1 0;
+  max-width: none;
+}
+
+.name-box input {
+  width: 100%;
+}
+
+.old_year,
+.old_month,
+.old_day {
+  width: 100px;
 }
 
 /* サイドバー */
