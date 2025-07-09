@@ -86,10 +86,11 @@ select {
 
 /* サイドバー */
 .sidebar {
-  width: 150px;
+  width: 220px;
   height: auto;
   background-color: #03AAD2;
   font-weight: bold;
+  padding-top: 30px;
 }
 
 .main-container {
@@ -98,6 +99,18 @@ select {
 
 .sidebar p a {
   color: #FFF;
+  text-decoration-line: none;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-icon {
+  width: 23px;
+  height: 23px;
+  margin: 0 8px;
 }
 
 /* トップページ */
