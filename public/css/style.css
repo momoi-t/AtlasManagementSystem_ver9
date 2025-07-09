@@ -114,9 +114,15 @@ select {
 }
 
 /* トップページ */
+.top-wrapper {
+  margin: 10px 20px;
+  border: none !important;
+}
+
 .user_status {
   border-radius: 10px;
   background: #FFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* スクール予約関連 */
