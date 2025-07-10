@@ -8,6 +8,7 @@ $(function () {
     e.preventDefault();
     $(this).addClass('un_like_btn');
     $(this).removeClass('like_btn');
+    $(this).removeClass('far').addClass('fas');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
     var countInt = Number(count);
@@ -30,6 +31,7 @@ $(function () {
     e.preventDefault();
     $(this).removeClass('un_like_btn');
     $(this).addClass('like_btn');
+    $(this).removeClass('fas').addClass('far');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
     var countInt = Number(count);
@@ -62,5 +64,11 @@ $(function () {
   $('.js-modal-close').on('click', function () {
     $('.js-modal').fadeOut();
     return false;
+  });
+
+  // 投稿一覧　カテゴリー検索
+  $('.main-category-header').on('click', function () {
+    $(this).next('.sub_category_list').slideToggle(200);
+    $(this).find('.arrow-icon').toggleClass('open');
   });
 });

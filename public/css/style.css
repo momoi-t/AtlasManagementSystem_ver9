@@ -9,6 +9,7 @@
 /* body */
 .all_content {
   background: #ECF1F6;
+  min-height: 100vh;
 }
 
 ul,
@@ -88,6 +89,7 @@ select {
 .sidebar {
   width: 220px;
   height: auto;
+  min-height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
   padding-top: 30px;
@@ -266,6 +268,21 @@ td.past-day {
 }
 
 /* 掲示板 */
+.board_area,
+.other_area {
+  min-height: 100vh;
+  border: none !important;
+}
+
+.post_view {
+  min-height: auto;
+}
+
+.other_content {
+  border: none !important;
+  margin: 50px 50px 0 0 !important;
+}
+
 .sub_categories {
   display: none;
 }
@@ -353,6 +370,23 @@ td.past-day {
   justify-content: space-between;
 }
 
+/* 掲示板 テキスト */
+.post_username {
+  font-weight: bold;
+  color: #999999;
+}
+
+.post_title {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bg-secondary {
+  --bs-bg-opacity: 1;
+  background-color: #03AAD2 !important;
+}
+
 /* 掲示板 コメント */
 .comment_container {
   background: #FFF;
@@ -375,10 +409,12 @@ td.past-day {
 
 .post_icon {
   padding: 0 1rem;
+  color: #999999;
 }
 
 .post_status span {
   font-size: 12px;
+  margin: 6px;
 }
 
 /* 掲示板　カテゴリー */
@@ -419,6 +455,147 @@ td.past-day {
 ol,
 ul {
   padding-left: 0;
+}
+
+/* 掲示板 検索 */
+.btn-primary.w-100 {
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.keyword-search-form {
+  display: flex;
+  width: 100%;
+}
+
+.keyword-search-form input[type="text"] {
+  flex: 1;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #ccc;
+  height: 40px;
+  padding: 0 10px;
+  background-color: #ECF1F6;
+  font-size: 13px;
+}
+
+.keyword-search-form input[type="text"]:focus,
+.keyword-search-form button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.keyword-search-form button {
+  border-radius: 0 10px 10px 0;
+  background-color: #03AAD2 !important;
+  color: #fff !important;
+  border: 1px solid #03AAD2;
+  height: 40px;
+  padding: 0 16px;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.btn-pink {
+  background-color: #f48fb1;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+}
+
+.btn-orange {
+  background-color: #fbc02d;
+  color: #fff;
+  border: none;
+  font-size: 13px;
+}
+
+.btn-pink:hover {
+  background-color: #f48fb1 !important;
+  color: #fff !important;
+}
+
+.btn-orange:hover {
+  background-color: #fbc02d !important;
+  color: #fff !important;
+}
+
+.double-btn-group {
+  display: flex;
+}
+
+.double-btn-group button {
+  flex: 1;
+  border-radius: 10px;
+  margin: 0;
+  height: 40px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+
+.category-list details summary {
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+  margin-left: auto;
+}
+
+.arrow-icon.open {
+  transform: rotate(-135deg);
+}
+
+.main-category-header {
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub_category_list {
+  list-style: none;
+  padding-left: 16px;
+}
+
+.sub_category_list li {
+  border-bottom: 1px solid #ccc;
+}
+
+.sub-category-link {
+  display: block;
+  padding: 6px 0;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.btn-primary {
+  background-color: #03AAD2;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: #0289a8;
 }
 
 /* ユーザー検索 */

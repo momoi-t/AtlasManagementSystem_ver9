@@ -1,11 +1,10 @@
 <x-sidebar>
 <div class="board_area w-100 border m-auto d-flex">
   <div class="post_view w-75 mt-5">
-    <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <div class="post_area border w-75 m-auto p-3">
-      <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
-      <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+      <p class="post_username"><span class>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
+      <p><a class="post_title" href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
         <!-- カテゴリ表示 -->
         @if ($post->subCategories->isNotEmpty())
@@ -24,7 +23,7 @@
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
             @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
+            <p class="m-0"><i class="far fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
             @endif
           </div>
         </div>
@@ -33,22 +32,33 @@
     @endforeach
   </div>
   <div class="other_area border w-25">
-    <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
+    <div class="other_content border m-4 text-center">
+      <div class="mb-3">
+      <a href="{{ route('post.input') }}" class="btn btn-primary w-100">投稿</a>
       </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
+      <div class="">
+        <form action="{{ route('post.show') }}" method="get" id="postSearchRequest" class="keyword-search-form mb-3">
+          <input type="text" placeholder="キーワードを検索" name="keyword" class="form-control">
+          <button type="submit" class="btn">検索</button>
+        </form>
+      </div>
+      <div class="double-btn-group mb-3">
+        <button type="submit" name="like_posts" class="btn btn-pink" form="postSearchRequest">いいねした投稿</button>
+        <button type="submit" name="my_posts" class="btn btn-orange" form="postSearchRequest">自分の投稿</button>
+      </div>
+      <h6 class="text-start">カテゴリー検索</h6>
+      <ul class="category-list">
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span>
-          @if ($category->subCategories->isNotEmpty())
-            <ul class="sub_category_list ps-3">
+        <li class="category-item">
+          <div class="main-category-header">
+          {{ $category->main_category }}
+          <span class="arrow-icon"></span>
+        </div>
+        @if ($category->subCategories->isNotEmpty())
+          <ul class="sub_category_list" style="display: none;">
             @foreach($category->subCategories as $subCategory)
               <li>
-                <a class="category_btn" href="{{ route('post.show', ['category_word' => $subCategory->id]) }}" >
+                <a href="{{ route('post.show', ['category_word' => $subCategory->id]) }}" class="sub-category-link">
                   {{ $subCategory->sub_category }}
                 </a>
               </li>
