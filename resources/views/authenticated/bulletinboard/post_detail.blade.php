@@ -5,7 +5,6 @@
       <div class="p-3">
       @if (Auth::id() === $post->user_id)
         <div class="detail_inner_head">
-          <!-- カテゴリ表示 -->
           @if ($post->subCategories->isNotEmpty())
             <div class="d-flex align-items-center mb-1">
               @foreach ($post->subCategories as $subCategory)
@@ -13,16 +12,6 @@
               @endforeach
             </div>
           @endif
-          <div>
-            <!-- バリデーションエラーメッセージ -->
-            @if ($errors->any())
-              <div class="text-danger small">
-                @foreach ($errors->all() as $error)
-                  <div>{{ $error }}</div>
-                @endforeach
-              </div>
-            @endif
-          </div>
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <form method="POST" action="{{ route('post.delete', ['id' => $post->id]) }}" onsubmit="return confirm('本当に削除してもよろしいですか？');" style="display: inline;">
@@ -65,6 +54,9 @@
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
+      @if($errors->first('comment'))
+      <span class="error_message">{{ $errors->first('comment') }}</span>
+      @endif
         <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">

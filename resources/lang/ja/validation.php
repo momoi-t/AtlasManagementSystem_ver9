@@ -128,7 +128,8 @@ return [
         'sub_category' => 'サブカテゴリー名',
         'over_name_kana' => '名字カナ',
         'under_name_kana' => '名前カナ',
-        'main_category_name' => 'メインカテゴリー名'
+        'main_category_name' => 'メインカテゴリー名',
+        'comment' => 'コメント'
     ],
 
 ];
