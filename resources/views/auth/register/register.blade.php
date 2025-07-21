@@ -76,7 +76,7 @@
           <label class="d-block m-0" style="font-size:13px">生年月日</label>
           <div class="d-flex birthday-box-group" style="gap:10px; justify-content:space-between;">
             <div class="birthday-box">
-              <select class="old_year border-bottom border-primary" name="old_year">
+              <select class="old_year border-bottom border-primary no-border-select" name="old_year">
                 <option value="none">-----</option>
                 <option value="1985">1985</option>
                 <option value="1986">1986</option>
@@ -108,7 +108,7 @@
             <label style="font-size:13px">年</label>
             </div>
             <div class="birthday-box">
-              <select class="old_month border-bottom border-primary" name="old_month">
+              <select class="old_month border-bottom border-primary no-border-select" name="old_month">
                 <option value="none">-----</option>
                 <option value="01">1</option>
                 <option value="02">2</option>
@@ -126,7 +126,7 @@
               <label style="font-size:13px">月</label>
             </div>
             <div class="birthday-box">
-              <select class="old_day border-bottom border-primary" name="old_day">
+              <select class="old_day border-bottom border-primary no-border-select" name="old_day">
                 <option value="none">-----</option>
                 <option value="01">1</option>
                 <option value="02">2</option>

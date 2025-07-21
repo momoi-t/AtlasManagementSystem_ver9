@@ -125,10 +125,10 @@ return [
         'birth_day' => '生年月日',
         'password_confirmation' => 'パスワード確認',
         'password' => 'パスワード',
-        'sub_category' => 'サブカテゴリー',
+        'sub_category' => 'サブカテゴリー名',
         'over_name_kana' => '名字カナ',
-        'under_name_kana' => '名前カナ'
-        // ここに他のフォーム項目の名前も追加してください
+        'under_name_kana' => '名前カナ',
+        'main_category_name' => 'メインカテゴリー名'
     ],
 
 ];

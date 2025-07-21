@@ -97,7 +97,7 @@ class PostsController extends Controller
     //メインカテゴリー
     public function mainCategoryCreate(Request $request){
         $request->validate([
-            'main_category' => 'required|string|max:100|unique:main_categories,main_category',
+            'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
         ]);
 
         MainCategory::create(['main_category' => $request->main_category_name]);

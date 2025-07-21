@@ -49,8 +49,7 @@ li {
 }
 
 /* 新規登録 */
-
-select {
+.no-border-select {
   border: none;
 }
 
@@ -81,7 +80,8 @@ select {
 .role-group,
 .subject-group,
 .mt-3 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  margin-top: 0 !important;
 }
 
 .name-box input {
@@ -341,6 +341,18 @@ td.past-day {
   justify-content: flex-end;
 }
 
+.post-submit-btn {
+  border-radius: 2px !important;
+  background-color: #0d6efd !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.post_category_create {
+  margin-left: 4rem !important;
+  width: 30% !important;
+}
+
 /* 掲示板 詳細画面 */
 .contributor {
   font-size: 12px;
@@ -458,7 +470,7 @@ td.past-day {
 }
 
 .subcategory_create {
-  padding-top: 48px;
+  padding-top: 20px;
 }
 
 ol,
@@ -651,4 +663,15 @@ ul {
 /*　背景色 */
 body {
   background: #ECF1F6 !important;
+}
+
+/* フォームカスタム用 */
+.form-control-custom {
+  height: 30px;
+  border: 1px solid #dee2e6;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
 }
