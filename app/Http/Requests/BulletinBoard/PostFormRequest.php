@@ -23,6 +23,13 @@ class PostFormRequest extends FormRequest
      */
     public function rules()
     {
+        if ($this->routeIs('post.edit')) {
+            return [
+                'post_title' => 'required|string|max:100',
+                'post_body' => 'required|string|max:2000',
+            ];
+        }
+
         return [
             'sub_category_id' => 'required|exists:sub_categories,id',
             'post_title' => 'required|string|max:100',

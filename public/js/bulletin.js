@@ -57,7 +57,7 @@ $(function () {
     var post_body = $(this).attr('post_body');
     var post_id = $(this).attr('post_id');
     $('.modal-inner-title input').val(post_title);
-    $('.modal-inner-body textarea').text(post_body);
+    $('.modal-inner-body textarea').val(post_body);
     $('.edit-modal-hidden').val(post_id);
     return false;
   });

@@ -13,10 +13,15 @@
             </div>
           @endif
           <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <button type="button" class="edit-modal-open btn btn-primary post-detail-btn"
+              post_title="{{ $post->post_title }}"
+              post_body="{{ $post->post }}"
+              post_id="{{ $post->id }}">
+              編集
+            </button>
             <form method="POST" action="{{ route('post.delete', ['id' => $post->id]) }}" onsubmit="return confirm('本当に削除してもよろしいですか？');" style="display: inline;">
               @csrf
-              <button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">
+              <button type="submit" class="btn btn-danger">
               削除
               </button>
             </form>
@@ -58,30 +63,32 @@
       <span class="error_message">{{ $errors->first('comment') }}</span>
       @endif
         <p class="m-0">コメントする</p>
-        <textarea class="w-100" name="comment" form="commentRequest"></textarea>
+        <textarea class="w-100 form-control-custom" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
-        <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
-        <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
+        <div class="mt-3 post_create_btn">
+          <input type="submit" class="btn btn-primary post-submit-btn" form="commentRequest" value="投稿">
+          <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <!--編集モーダル-->
 <div class="modal js-modal">
-  <div class="modal__bg js-modal-close"></div>
+  <div class="modal__bg js-modal-close post-edit-modal"></div>
   <div class="post-edit-modal-content">
-    <form action="{{ route('post.edit') }}" method="post">
+    <form action="/bulletin_board/edit" method="post">
       <div class="w-100">
         <div class="modal-inner-title w-50 m-auto">
-          <input type="text" name="post_title" placeholder="タイトル" class="w-100">
+          <input type="text" name="post_title" placeholder="タイトル" class="w-200 form-control-custom">
         </div>
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
-          <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
+          <textarea placeholder="投稿内容" name="post_body" class="w-200 form-control-custom"></textarea>
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
-          <input type="submit" class="btn btn-primary d-block" value="編集">
+          <input type="submit" class="btn btn-primary post-detail-btn" value="編集">
         </div>
       </div>
       {{ csrf_field() }}
