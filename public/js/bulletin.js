@@ -71,4 +71,9 @@ $(function () {
     $(this).next('.sub_category_list').slideToggle(200);
     $(this).find('.arrow-icon').toggleClass('open');
   });
+
+  // 投稿一覧　カテゴリー検索
+  $('.search_conditions span').on('click', function () {
+    $('.search_conditions_inner').slideToggle(200);
+  });
 });
