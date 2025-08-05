@@ -4,6 +4,10 @@ $(function () {
   });
 
   $('.subject_edit_btn').click(function () {
-    $('.subject_inner').slideToggle();
+    const $btn = $(this);
+    const $target = $btn.next('.subject_inner');
+
+    $target.stop(true, true).slideToggle(200);
+    $btn.find('.arrow_icon_subject').toggleClass('open');
   });
 });

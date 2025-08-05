@@ -76,4 +76,5 @@ $(function () {
   $('.search_conditions span').on('click', function () {
     $('.search_conditions_inner').slideToggle(200);
   });
+
 });

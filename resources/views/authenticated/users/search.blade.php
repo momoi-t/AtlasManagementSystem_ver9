@@ -84,7 +84,7 @@
       <div class="">
         <p class="main-category-header search-toggle" style="cursor: pointer;">検索条件の追加<span class="arrow-icon"></span></p>
 
-        <div class="sub_category_list search-conditions" style="display: none;">
+        <div class="sub_category_list search_conditions" style="display: none;">
           <div class="mb-3">
             <label>性別</label>
             <div style="display: flex; flex-wrap: wrap;" class="select_control">
