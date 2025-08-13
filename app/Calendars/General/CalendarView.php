@@ -42,11 +42,17 @@ class CalendarView{
       foreach($days as $day){
         //過去日か判定
         $today = Carbon::today();
-        $isPast = Carbon::parse($day->everyDay())->lt($today);
+        $dayDate = Carbon::parse($day->everyDay())->startOfDay();
+        $isPast = $dayDate->lt($today);
+        $dayClass = $day->getClassName();
         // 過去日をpast-dayにする
-        $tdClass = 'calendar-td' . ($isPast ? ' past-day' : ' '.$day->getClassName());
+        $tdClass = 'calendar-td';
+        if ($isPast) {
+            $tdClass .= ' past-day ' . $dayClass;
+        } else {
+            $tdClass .= ' ' . $dayClass;
+        }
         $html[] = '<td class="' . $tdClass . '">';
-
         $html[] = $day->render();
 
         //予約済みチェック

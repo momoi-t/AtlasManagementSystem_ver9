@@ -149,14 +149,6 @@ td.day-blank {
   background: #D3D3D3 !important;
 }
 
-.day-sat {
-  color: #0000FF !important;
-}
-
-.day-sun {
-  color: #FF0000 !important;
-}
-
 .admin-page td.past-day {
   background: #EEE !important;
 }
@@ -169,13 +161,36 @@ td.past-day {
   color: #999 !important;
 }
 
+td.past-day.day-sat p.day {
+  color: #0000FF !important;
+}
+
+td.past-day.day-sun p.day {
+  color: #FF0000 !important;
+}
+
 .calendar-td {
   min-width: 100px !important;
+}
+
+.calendar table,
+.calendar th,
+.calendar td {
+  border-width: 1px;
+  border-style: solid;
 }
 
 .day_part {
   color: #494949 !important;
   font-size: 12px !important;
+}
+
+.day-sat {
+  color: #0000FF !important;
+}
+
+.day-sun {
+  color: #FF0000 !important;
 }
 
 .adjust-table {
@@ -199,6 +214,22 @@ td.past-day {
 .reserve_btn {
   display: flex;
   justify-content: flex-end;
+}
+
+.calendar-container {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.inner-calendar {
+  border: none;
+  border-radius: 5px;
+}
+
+.reserve_btn .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 /* モーダル */
