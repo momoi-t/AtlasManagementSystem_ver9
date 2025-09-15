@@ -1,23 +1,27 @@
 <x-sidebar>
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
-  <div class="w-50 m-auto h-75">
-    <p><span>{{ $date }}日</span><span class="ml-3">　{{ $part }}部</span></p>
-    <div class="h-75 border">
-      <table class="text-center">
-        <tr class="text-center">
-          <th class="w-25">ID</th>
-          <th class="w-25">名前</th>
-          <th class="w-25">場所</th>
+  <div class="w-75 m-auto h-75">
+    <p><span>{{ \Carbon\Carbon::parse($date)->format('Y年m月d日') }}</span><span class="ml-3">　{{ $part }}部</span></p>
+    <div class="reserve_table_container">
+      <table class="reserve_table text-center">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>名前</th>
+          <th>場所</th>
         </tr>
-        <tr class="text-center">
+        </thead>
+        <tbody>
           @foreach ($reservePersons as $reserve)
             @foreach ($reserve->users as $user)
+              <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->over_name }} {{ $user->under_name }}</td>
                 <td>リモート</td>
-        </tr>
+              </tr>
             @endforeach
           @endforeach
+        </tbody>
       </table>
     </div>
   </div>

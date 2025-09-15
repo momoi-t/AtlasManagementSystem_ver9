@@ -16,7 +16,7 @@ class CalendarWeekDay{
   }
 
   function render(){
-    return '<p class="day">' . $this->carbon->format("j") . '日</p>';
+    return '<p class="day admin_calendar">' . $this->carbon->format("j") . '日</p>';
   }
 
   function everyDay(){
@@ -31,21 +31,18 @@ class CalendarWeekDay{
     $three_part = ReserveSettings::withCount('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
     $html[] = '<div class="text-left">';
-    if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">'
-              . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]). '">1部</a>'
-              . '　　' . $one_part->users_count. '</p>';
-    }
-    if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">'
-              . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '">2部</a>'
-              . '　　' . $two_part->users_count. '</p>';
-    }
-    if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">'
-              . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '">3部</a>'
-              . '　　' . $three_part->users_count. '</p>';
-    }
+    // 1部
+    $html[] = '<p class="day_part calendar_part m-0 pt-1">'
+            . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]) . '" class="link_part_lite">1部</a>'
+            . '　　' . ($one_part ? $one_part->users_count : 0) . '</p>';
+    // 2部
+    $html[] = '<p class="day_part calendar_part m-0 pt-1">'
+            . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]) . '" class="link_part_lite">2部</a>'
+            . '　　' . ($two_part ? $two_part->users_count : 0) . '</p>';
+    // 3部
+    $html[] = '<p class="day_part calendar_part m-0 pt-1">'
+            . '<a href="' . route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]) . '" class="link_part_lite">3部</a>'
+            . '　　' . ($three_part ? $three_part->users_count : 0) . '</p>';
 
     $html[] = '</div>';
 

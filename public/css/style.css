@@ -171,11 +171,13 @@ td.past-day.day-sun p.day {
 
 .calendar-td {
   min-width: 100px !important;
+  font-size: 12px;
 }
 
 .calendar table,
 .calendar th,
 .calendar td {
+  font-size: 12px;
   border-width: 1px;
   border-style: solid;
 }
@@ -203,12 +205,18 @@ td.past-day.day-sun p.day {
 
 .adjust-area p {
   justify-content: space-around !important;
+  font-size: 12px;
 }
 
 .adjust-table-btn {
-  width: 70% !important;
   display: flex;
   justify-content: flex-end;
+}
+
+.adjust-table-btn .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 12px;
 }
 
 .reserve_btn {
@@ -230,6 +238,49 @@ td.past-day.day-sun p.day {
 .reserve_btn .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
+  font-size: 12px;
+}
+
+.admin_calendar {
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+.calendar_part {
+  padding: 0 !important;
+}
+
+.link_part_lite {
+  color: #03AAD2;
+  text-decoration: none;
+}
+
+.reserve_table_container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+}
+
+.reserve_table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.reserve_table th {
+  background-color: #03AAD2;
+  color: #fff;
+  padding: 12px;
+}
+
+.reserve_table td {
+  padding: 12px;
+  background-color: #fff;
+}
+
+.reserve_table tr:nth-child(even) td {
+  background-color: #E6F7FB;
 }
 
 /* モーダル */
@@ -740,7 +791,7 @@ ul {
   margin-right: 4px;
 }
 
-.name-link {
+.link_part {
   color: #03AAD2;
   text-decoration: none;
   font-weight: bold;

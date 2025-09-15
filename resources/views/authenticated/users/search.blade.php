@@ -8,7 +8,7 @@
       </div>
       <div class="info-block">
         <span class="label">名前 : </span>
-        <a href="{{ route('user.profile', ['id' => $user->id]) }}" class="name-link">
+        <a href="{{ route('user.profile', ['id' => $user->id]) }}" class="link_part">
           <span>{{ $user->over_name }}</span>
           <span>{{ $user->under_name }}</span>
         </a>

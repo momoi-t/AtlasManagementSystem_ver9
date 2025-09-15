@@ -17,35 +17,42 @@ class CalendarSettingView{
   public function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';
-    $html[] = '<table class="table m-auto border adjust-table">';
+    $html[] = '<table class="table">';
     $html[] = '<thead>';
     $html[] = '<tr>';
-    $html[] = '<th class="border">月</th>';
-    $html[] = '<th class="border">火</th>';
-    $html[] = '<th class="border">水</th>';
-    $html[] = '<th class="border">木</th>';
-    $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
+     //曜日のヘッダー
+    $html[] = '<th>月</th>';
+    $html[] = '<th>火</th>';
+    $html[] = '<th>水</th>';
+    $html[] = '<th>木</th>';
+    $html[] = '<th>金</th>';
+    $html[] = '<th class="day-sat">土</th>';
+    $html[] = '<th class="day-sun">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
+    //週を取得
     $weeks = $this->getWeeks();
-
+    //週ごとに<tr>を作成
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
+      //1週間をループ
       $days = $week->getDays();
       foreach($days as $day){
+        //過去日か判定
         $today = Carbon::today();
         $yesterday = $today->copy()->subDay();
+        $tdClass = 'calendar-td ' . $day->getClassName();
+
         if ($day->everyDay() === '') {
-          $html[] = '<td class="day-blank border">';
+          $tdClass .= ' day-blank';
         } elseif ($day->everyDay() <= $yesterday->format("Y-m-d")) {
-          $html[] = '<td class="past-day border">';
-        } else {
-          $html[] = '<td class="border '.$day->getClassName().'">';
+          $tdClass .= ' past-day';
         }
+
+        $html[] = '<td class="'.$tdClass.'">';
         $html[] = $day->render();
+
         $html[] = '<div class="adjust-area">';
         if($day->everyDay()){
           if ($day->everyDay() <= $yesterday->format("Y-m-d")) {

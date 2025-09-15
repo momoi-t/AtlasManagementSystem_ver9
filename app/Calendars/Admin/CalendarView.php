@@ -20,38 +20,54 @@ class CalendarView{
     $html[] = '<table class="table m-auto border">';
     $html[] = '<thead>';
     $html[] = '<tr>';
-    $html[] = '<th class="border">月</th>';
-    $html[] = '<th class="border">火</th>';
-    $html[] = '<th class="border">水</th>';
-    $html[] = '<th class="border">木</th>';
-    $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
+    //曜日のヘッダー
+    $html[] = '<th>月</th>';
+    $html[] = '<th>火</th>';
+    $html[] = '<th>水</th>';
+    $html[] = '<th>木</th>';
+    $html[] = '<th>金</th>';
+    $html[] = '<th class="day-sat">土</th>';
+    $html[] = '<th class="day-sun">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
-
+    //週を取得
     $weeks = $this->getWeeks();
-
+    //週ごとに<tr>を作成
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
+      //1週間をループ
       $days = $week->getDays();
       foreach($days as $day){
+        //過去日か判定
         $today = Carbon::today();
-        $yesterday = $today->copy()->subDay();
-        if ($day->everyDay() === '') {
-          $html[] = '<td class="day-blank border">';
-        } elseif ($day->everyDay() <= $yesterday->format("Y-m-d")) {
-          $html[] = '<td class="past-day border">';
+        $dayDate = $day->everyDay() ? Carbon::parse($day->everyDay())->startOfDay() : null;
+        $isPast = $dayDate ? $dayDate->lt($today) : false;
+        $dayClass = $day->getClassName();
+
+        // tdクラス付与（Generalと同じロジック）
+        $tdClass = 'calendar-td';
+        if (!$day->everyDay()) {
+          $tdClass .= ' day-blank';
+        } elseif ($isPast) {
+          $tdClass .= ' past-day ' . $dayClass;
         } else {
-          $html[] = '<td class="border '.$day->getClassName().'">';
+          $tdClass .= ' ' . $dayClass;
         }
-        $html[] = $day->render();
-        $html[] = $day->dayPartCounts($day->everyDay());
+
+        $html[] = '<td class="' . $tdClass . '">';
+
+        if ($day->everyDay()) {
+          // 日付を表示
+          $html[] = $day->render();
+          // Admin専用: 予約人数表示
+          $html[] = $day->dayPartCounts($day->everyDay());
+        }
+
         $html[] = '</td>';
       }
-      $html[] = '</tr>';
-    }
+  $html[] = '</tr>';
+}
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
