@@ -106,6 +106,7 @@ li {
 
 .main-container {
   width: 100%;
+  min-height: 100vh;
 }
 
 .sidebar p a {
@@ -170,8 +171,13 @@ td.past-day.day-sun p.day {
 }
 
 .calendar-td {
-  min-width: 100px !important;
+  min-width: auto !important;
   font-size: 12px;
+}
+
+.calendar-td select {
+  width: 100% !important;
+  box-sizing: border-box;
 }
 
 .calendar table,
@@ -180,6 +186,8 @@ td.past-day.day-sun p.day {
   font-size: 12px;
   border-width: 1px;
   border-style: solid;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .day_part {
@@ -409,6 +417,7 @@ td.past-day.day-sun p.day {
 }
 
 .error_message {
+  margin: 1rem;
   font-size: 12px;
   color: red;
 }
@@ -717,7 +726,7 @@ ul {
 .reserve_users_area {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
   gap: 20px;
   width: 100%;
   margin: 10px 0;

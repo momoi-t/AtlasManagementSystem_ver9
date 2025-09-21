@@ -2,6 +2,16 @@
 <div class="vh-100 d-flex">
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
+    <div>
+      @if($errors->has('post_title'))
+        <span class="error_message">{{ $errors->first('post_title') }}</span>
+      @endif
+    </div>
+    <div>
+      @if($errors->has('post_body'))
+        <span class="error_message">{{ $errors->first('post_body') }}</span>
+      @endif
+      </div>
       <div class="p-3">
       @if (Auth::id() === $post->user_id)
         <div class="detail_inner_head">
