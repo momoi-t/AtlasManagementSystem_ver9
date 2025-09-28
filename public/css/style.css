@@ -107,6 +107,8 @@ li {
 .main-container {
   width: 100%;
   min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .sidebar p a {
@@ -720,7 +722,7 @@ ul {
 
 /* ユーザー検索 */
 .search_content {
-  height: 100vh;
+  height: 100%;
 }
 
 .reserve_users_area {
